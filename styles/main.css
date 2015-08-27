@@ -183,7 +183,7 @@ a, a:hover, a:active, a:visited, a:link{
 }
 
 .splash{
-  background: url('../images/splashBg.jpg') center center;
+  background: url('../images/splashBg.f84e2199.jpg') center center;
   height: 100vh;
 
   /*TODO add min height*/
