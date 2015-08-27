@@ -1,0 +1,238 @@
+/*Element rules*/
+img{
+  max-width: 100%;
+  height: auto;
+  width: auto\9;
+}
+
+a{ 
+  color: #333; 
+  text-decoration: none; 
+}
+
+/* Needed to stop the default behaviours
+TODO needs to be in all others */
+a:hover{ 
+  color: #000;
+  text-decoration: none;
+}
+
+a:active{
+  color: #333; 
+  text-decoration: none; 
+}
+
+a:visited{
+  color: #333; 
+  text-decoration: none;  
+}
+
+a:link{
+  color: #333;  
+  text-decoration: none;    
+}
+
+h1{
+  font: bold 2.5em 'Oswald', sans-serif; 
+  font-family: 'Oswald', sans-serif;
+  color: rgb(30,30,30);
+}
+
+p{
+  font-family: 'Roboto', sans-serif;
+  font: bold 1.0em 'Roboto', sans-serif;
+  color: rgb(30,30,30);
+}
+
+li{
+  font: normal 1.7em 'Oswald', sans-serif; 
+}
+
+header{
+  margin: 0 0 20px 0;
+  padding-top: 30px;
+}
+
+header h1{
+  float: left;
+  float: bottom;
+}
+
+
+header nav{ 
+  float: left; 
+}
+
+header nav ul{
+  padding-left: 0px;
+  margin-bottom: 0px;
+  margin-top: 20px;
+}
+
+header nav ul li{
+  display: inline-block;
+  margin: 10px 0 0 0;
+}
+
+header nav ul li a{ 
+  display: block; 
+  padding-right: 20px;
+}
+
+footer{
+  margin-top: 20px;
+  padding-top: 30px;
+}
+
+footer nav{
+  float: left; 
+}
+
+footer nav ul{
+  padding: 0;
+}
+
+footer nav ul li{
+  display: inline-block;
+  padding: 0px;
+}
+
+footer nav ul li a{
+  display: block; 
+  padding: 10px; 
+  border: 1px solid #fff;
+}
+
+hr{
+  background: rgb(110,110,110);
+  height : 5px;
+}
+
+/*Class rules*/
+.main-content{ 
+  padding: 30px; 
+}
+
+.mainTitle{
+  font: bold 2.9em 'Oswald', sans-serif; 
+  font-family: 'Oswald', sans-serif;
+  color: rgb(30,30,30);
+}
+
+.primaryContent p{  
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2em;
+  line-height: 1.3em;
+  word-spacing: 1px;
+}
+
+.primaryContent h2{
+  font-family: 'Roboto', sans-serif;
+  font: bold 2.0em 'Roboto', sans-serif;
+  color: rgb(30,30,30);
+  padding-bottom: 20px;
+}
+
+.splashContent p{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3em;
+  padding-left: 10px;
+  padding-top: 30px;
+  padding-right: 20px;
+  color: rgb(50,50,50);
+  line-height: 1.8em;
+  word-spacing: 3px;
+}
+
+.secondaryContent{
+  padding-left: 80px;
+}
+
+.secondaryContent h2{
+  font-family: 'Roboto', sans-serif;
+  font: bold 2em 'Roboto', sans-serif;
+  color: rgb(30,30,30);
+}
+
+.secondaryContent p{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1em;
+  line-height: 1.2em;
+  word-spacing: 1px;
+}
+
+.hiddenLink, .hiddenLink:hover, .hiddenLink:active, .hiddenLink:visited{
+  text-decoration: none;
+  color: rgb(50,50,50);
+}
+
+.visibleLink, .visibleLink:hover, .visibleLink:active, .visibleLink:visited{
+  font-size: 1.15em;
+  text-decoration: none;
+  color: rgb(110,110,110);
+}
+
+a, a:hover, a:active, a:visited, a:link{
+  text-decoration: none;
+  color: rgb(50,50,50);
+}
+
+
+.wrapper{
+  padding: 40px;
+}
+
+.splash{
+  background: url('../images/splashBg.jpg') center center;
+  height: 100vh;
+
+  /*TODO add min height*/
+
+  width: 100%;
+  background-size: cover;
+  background-attachment: fixed;
+
+}
+
+.splash-info{
+  background-image: linear-gradient(to left, rgba(255,255,255,0.6), rgba(255,255,255,0.8));
+  height: 100%;
+  text-align: left;
+  padding-top: 40px;
+}
+
+.splashTitle{
+  font: bold 2.7em 'Oswald', sans-serif; 
+  color: rgb(50,50,50);
+  /* On the background this looks darker than the 30,30,30 on the white background*/
+  margin-top: 50px;
+}
+
+.splashTitle a, a:hover, a:active, a:visited, a:link{
+  text-decoration: none;
+  color: rgb(50,50,50);
+}
+
+.splashContent p{
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3em;
+  padding-left: 10px;
+  padding-top: 30px;
+  padding-right: 20px;
+  color: rgb(50,50,50);
+  line-height: 1.8em;
+  word-spacing: 3px;
+}
+
+.portrait{
+  min-width: 110px;
+  min-height: 110px;
+  max-width: 110px;
+  max-height: 110px;
+}
+
+
+.contentPage{
+  padding-left: 40px;
+  padding-right: 40px;
+}
