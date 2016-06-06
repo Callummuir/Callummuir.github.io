@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="/favicon.a03254ec.ico">
     
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.94de40ee.css">
+    <link rel="stylesheet" href="styles/main.cc722dba.css">
     
     <link rel="stylesheet" href="styles/vendor.2ac5f564.css">
 
@@ -672,10 +672,151 @@
               Callum
             </p>
 
+            <!-- End of Post 1 -->
+
+            <hr class="break">
+            <br>
+
+            <!-- Start of Post 2 -->
+
+            <h2>
+              Simple Node Audio Server
+            </h2>
+
+            <p>
+              During a project I came across a nice simple solution for serving audio files from a Node server to front end. I had been having some difficulty finding a solution where the audio could be easily played once it was delivered to the front end. This solution is simple and quick to get running. 
+            </p>
+
+            <p>
+              The front end is in AngularJS using Yeoman's angular generator to scaffold. The backend is written in NodeJS using Express. 
+            </p>
+
+            <h2>
+              Front End
+            </h2>
+
+            <p>
+              The front end content is very basic, just a button that links to the playAudio( ) function.
+            </p>
+
+            <p>
+              In the controller two things are happening. Firstly we have the audio being brought down when the page initialises, and we have the audio playing. 
+            </p>
+
+            <p>
+              When the page loads we want to load the audio as well. To do this we need to make a GET request to the server. To do this we use a XMLHttpResquest, contrary to its name it supports any data type not just XML.  
+            </p>
+
+            <p>
+              Using this, we open a GET http request to the server's address. In this case we are hosting locally on port 8080. We request the /getAudio function, which we will create later. We specify that we want an array buffer back as it works well with audio data, as it can get more easily fed into a buffer than the other potential response type (json, blob).
+            </p>
+
+            <p>
+              When the request is loaded we want to decode the data and create a playable audio source from it. Here we put the data into a audioBuffer variable before creating the source. This allows us some flexibilty with the raw audio data, for example we might want to mix it together with some other audio. 
+            </p>
+
+            <p>
+              Here we've made a separate function to create the source. In this you can set parameters to the audio, such as change the start point, or to mix audio together. 
+            </p>
+
+            <pre class="prettyprint">
+              //load the remote audio
+              var loadAudio = function(){
+                var request = new XMLHttpRequest();
+                request.open("GET", 'http://127.0.0.1:8080/getAudio');
+                request.responseType = 'arraybuffer';
+                request.onload = function(){
+                  context.decodeAudioData(request.response, function(buffer){
+                    audioBuffer = buffer;
+                    source = createSource(audioBuffer);
+                  });
+                };
+                request.send();  
+              };
+
+              //create a source to play the audio
+              var createSource = function(buffer){
+                var source = context.createBufferSource();
+                source.buffer = buffer;
+                source.loop = false;
+                source.connect(context.destination);
+                return source;
+              };</pre>
+
+            <p>
+              With the decoded audio set to a source we now have playable audio. 
+            </p>
+
+            <p>
+              The playAudio( ) function is tied to the play audio button. Pressing this simply starts the audio at the 0 timestamp, ie the start of the audio. 
+            </p>
+
+            <pre class="prettyprint">
+            $scope.playAudio = function(){
+              source.start(0);
+            }</pre>
+
+            <h2>
+              Backend
+            </h2>
+
+            <p>
+              The backend is very simple. We use express to create the app and serve the content. And we use the <a href="https://github.com/obastemur/mediaserver"> mediaServer</a> module to stream the media. 
+
+
+            </p>
+
+            <p>
+              We use only one function, the one we call from the front end: getAudio( ). In this we open a mediaServer pipe with the audio path. This is returned in the get statement to the front end. If we wanted to alter the file path however, we would need a second function, setAudio, where we would have to store the file path before running getAudio( ).
+            </p>
+
+            <pre class="prettyprint">
+               // get audio api function
+              app.get('/getAudio', function(req, res) {
+                console.log("getting audio");
+                ms.pipe(req, res, audioFilePath);
+                return ;
+              });</pre>
+
+            <h2>
+              Bringing Everything Together 
+            </h2>
+
+            <p>
+              We can build the front end by using the grunt build command. This builds the front end into the dist folder. From here we simply copy the contents of the dist folder into the public folder in the backend. 
+            </p>
+
+            <p>
+              Then we run the server, and look at localhost on port 8080 and you see our page. When you click the button the audio file specified is played. 
+            </p>
+
+            <h2>
+              Extra 
+            </h2>
+
+            <p>
+              Currently the audio only plays once. If you try to play it again you get an error message. The problem being we have started playing the audio, but have not stopped it. We can include a timeout function to play source.stop when the audio has ended. Or if we want a stop button tag this to that button. 
+            </p>
+
+            <p>
+              If we just want to pause the audio we would have to count the time between the start button and the pause button being pressed, and then restart the source at this timestamp, rather than at 0. 
+            </p>
+
+            <h2>
+              Conclusion
+            </h2>
+
+            <p>
+              This is a very simple solution to downloading a file (in this case audio) from node server, to an angular front end. 
+            </p>
+
+            <!-- End of Post 2 -->
 
 
           </div>
-          <!-- End of Post 1 -->
+          
+
+
 
           <div class="col-md-3 col-xs-1">
           </div>
@@ -713,4 +854,3 @@
 
   </body>
 </html>
-
